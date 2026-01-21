@@ -17,8 +17,23 @@ function register() {
   const password = document.getElementById("password").value;
 
   auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      // создаём профиль
+      return db.collection("users").doc(user.uid).set({
+        email: email,
+        username: email.split("@")[0],
+        description: "",
+        birthday: "",
+        avatar: "",
+        verified: true, // ТЫ — разработчик
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    })
     .then(() => {
-      document.getElementById("status").innerText = "Аккаунт создан 🎉";
+      document.getElementById("status").innerText =
+        "Аккаунт создан 🎉 Профиль добавлен";
     })
     .catch(err => {
       document.getElementById("status").innerText = err.message;
