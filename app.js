@@ -1,3 +1,4 @@
+// ===== Firebase config =====
 const firebaseConfig = {
   apiKey: "AIzaSyCeb6MX8E-ItrWHNdjsApCx_58FYIVa5wo",
   authDomain: "albgram-6f1cd.firebaseapp.com",
@@ -7,12 +8,16 @@ const firebaseConfig = {
   appId: "1:945556839142:web:ac32cd88cf2d18c9bcf927"
 };
 
+// ===== Init Firebase =====
 firebase.initializeApp(firebaseConfig);
+
+// ===== Services =====
 const auth = firebase.auth();
 const db = firebase.firestore();
-console.log("Firestore OK", db);
 
-// регистрация
+console.log("Firebase initialized");
+
+// ===== Регистрация =====
 function register() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -34,14 +39,15 @@ function register() {
     })
     .then(() => {
       document.getElementById("status").innerText =
-        "Аккаунт создан 🎉 Профиль добавлен";
+        "Аккаунт создан 🎉 Профиль сохранён";
     })
-    .catch(err => {
-      document.getElementById("status").innerText = err.message;
+    .catch((error) => {
+      document.getElementById("status").innerText = error.message;
+      console.error(error);
     });
 }
 
-// вход
+// ===== Вход =====
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -50,7 +56,7 @@ function login() {
     .then(() => {
       document.getElementById("status").innerText = "Вход выполнен ✅";
     })
-    .catch(err => {
-      document.getElementById("status").innerText = err.message;
+    .catch((error) => {
+      document.getElementById("status").innerText = error.message;
     });
 }
