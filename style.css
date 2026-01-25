@@ -10,7 +10,7 @@ input {
   display: block;
   margin: 10px auto;
   padding: 10px;
-  width: 220px;
+  width: 230px;
   border-radius: 6px;
   border: none;
 }
@@ -21,4 +21,6 @@ button {
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  background: #2563eb;
+  color: white;
 }
