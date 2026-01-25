@@ -54,7 +54,7 @@ function login() {
 
   auth.signInWithEmailAndPassword(email, password)
     .then(() => {
-      document.getElementById("status").innerText = "Вход выполнен ✅";
+      window.location.href = "profile.html";
     })
     .catch((error) => {
       document.getElementById("status").innerText = error.message;
